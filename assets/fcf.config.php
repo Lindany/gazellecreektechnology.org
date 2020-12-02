@@ -1,16 +1,20 @@
 <?php
-// ************************************
+// ***********************************************************
 // This file is part of a package from:
 // www.freecontactform.com
 
 // Free Version
-// 15 September 2020
+// 29 October 2020
 
-// You are free to use an edit for 
-// your own use. But cannot resell
-// or repackage in any way.
-// ************************************
+// You are free to use for your own use. 
+// You cannot resell or repackage in any way.
 
+// Important legal notice:
+// You must retain the attribution to www.freecontactform.com 
+// If must be visible on the same page as the form.
+// Or switch to the Pro version without attribution/credit.
+
+// ***********************************************************
 
 // ***********
 // LICENSE KEY
@@ -21,21 +25,35 @@ define('KEY', 'FREE');
 // *********************
 // FORM FIELD VALIDATION
 // *********************
-$validate = array(
-   "Name" => "NOT_EMPTY,1,100",
-   "Email" => "EMAIL,1,100",
-   "Message" => "NOT_EMPTY,1,3000"
+$rules = array(
+  "Name" => array(
+    "required" => true,
+    "label" => "Your name",
+    "maxLength" => 100
+  ),
+  "Email" => array(
+    "required" => true,
+    "label" => "Your email address",
+    "maxLength" => 100,
+    "email" => true
+  ),
+  "Phone" => array(
+    "required" => false,
+    "label" => "Your phone number",
+    "maxLength" => 30
+  ),
+  "Message" => array(
+    "required" => true,
+    "label" => "Your message",
+    "maxLength" => 3000
+  )
 );
 
 
 // ******************
-// FORM FIELD MAPPING
+// THANK YOU PAGE
 // ******************
-$mapping = array(
-   "Name" => "Your name",
-   "Email" => "Your email address",
-   "Message" => "Your message"
-);
+define('THANK_YOU_PAGE','');
 
 
 // **************************
@@ -69,16 +87,16 @@ define('EMAIL_TO_CC', 'mabasolindanircardo@gmail.com');
 define('EMAIL_TO_CC_NAME', 'Lindani');
 
 define('EMAIL_TO_BCC', '');
-define('EMAIL_TO_BCC_NAME', '');
+define('EMAIL_TO_BCC_NAME', 'lindanimabaso@gazellecreektechnologies.co.za');
 
-define('EMAIL_FROM', 'lindan@gazellecreektechnologies.co.za');
+define('EMAIL_FROM', 'info@gazellecreektechnologies.co.za');
 define('EMAIL_FROM_NAME', '');
 
 define('EMAIL_REPLY_TO', 'FIELD:Email');
 define('EMAIL_REPLY_TO_NAME', 'FIELD:Email');
 
 define('EMAIL_SUBJECT_BEFORE', '');
-define('EMAIL_SUBJECT', "New contact form message");
+define('EMAIL_SUBJECT', "New Website Contact Email");
 define('EMAIL_SUBJECT_AFTER', '');
 
 
@@ -86,13 +104,13 @@ define('EMAIL_SUBJECT_AFTER', '');
 // ***************
 // EMAIL TRANSPORT
 // ***************
-define('USE_SMTP', 'YES'); // YES or NO
+define('USE_SMTP', 'NO'); // YES or NO
 define('SMTP_HOST', 'mail.gazellecreektechnologies.co.za');
 define('SMTP_USER', 'info@gazellecreektechnologies.co.za');
 define('SMTP_PASS', 'info@gazellecreektechnologies.co.za');
 define('SMTP_AUTH', '');
-define('SMTP_SECURE', '465'); // STARTTLS, SMTPS (port 465) or empty
-define('SMTP_PORT', '993');
+define('SMTP_SECURE', ''); // STARTTLS, SMTPS (port 465) or empty
+define('SMTP_PORT', '');
 define('SMTP_DEBUG', 'NO'); // YES or NO
 
 
