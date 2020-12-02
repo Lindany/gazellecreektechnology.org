@@ -1,16 +1,19 @@
 <?php
-// ************************************
+// ***********************************************************
 // This file is part of a package from:
 // www.freecontactform.com
 
-// Free Version
-// 15 September 2020
+// Free Version (3)
+// 29 October 2020
 
-// You are free to use an edit for 
-// your own use. But cannot resell
-// or repackage in any way.
-// ************************************
+// You are free to use for your own use. 
+// You cannot resell or repackage in any way.
 
+// Important legal notice:
+// You MUST retain the attribution to www.freecontactform.com 
+// It must be visible on the same page as the form.
+// Or switch to the Pro version without attribution/credit.
+// ***********************************************************
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -22,7 +25,7 @@ $lk = KEY;
 // *******************
 checkConfigurationExists();
 
-$expected_fields_check = checkFieldsExist($validate);
+$expected_fields_check = checkFieldsExist($rules);
 
 if($expected_fields_check != "") {
     $message = "Fields passed from the form don't match the configured ones.";
@@ -34,7 +37,10 @@ if($expected_fields_check != "") {
 // *******************
 // VALIDATE THE FIELDS
 // *******************
-validateFields($validate, $mapping);
+validateFields($rules);
+
+
+$response_score = "";
 
 
 // ************
@@ -83,6 +89,7 @@ try {
     } else {
         $mail->isMail();
     }
+
 
     // EMAIL FROM
     $email_from = EMAIL_FROM;
@@ -241,8 +248,8 @@ try {
     $mail->Subject = trim(EMAIL_SUBJECT_BEFORE." ".$email_subject ." ".EMAIL_SUBJECT_AFTER);
 
     $mail->isHTML(true); 
-    $mail->Body = getHtmlBody(1);
-    $mail->AltBody = getPlainBody(1);
+    $mail->Body = getHtmlBody($response_score);
+    $mail->AltBody = getPlainBody($response_score);
 
     $mail->send();
 
@@ -312,6 +319,7 @@ function getEmailBody($score, $type) {
         $body = file_get_contents('./email-templates/'.EMAIL_TEMPLATE_IN_TEXT);
     }
     foreach($_POST as $field => $value) {
+        if($field == "recaptcha-token") { continue; }
         if(is_array($value)) {
             $value = implode(", ",$value);
         }
@@ -331,6 +339,7 @@ function getAutoResponseContent() {
     $html = file_get_contents('./email-templates/'.EMAIL_TEMPLATE_OUT_HTML);
     $text = file_get_contents('./email-templates/'.EMAIL_TEMPLATE_OUT_TEXT);
     foreach($_POST as $field => $value) {
+        if($field == "recaptcha-token") { continue; }
         if(is_array($value)) {
             $value = implode(", ",$value);
         }
@@ -361,9 +370,9 @@ function checkConfigurationExists() {
     }
 }
 
-function checkFieldsExist($form_fields) {
+function checkFieldsExist($rules) {
     $returnstring = "";
-    foreach($form_fields as $field => $type) {
+    foreach($rules as $field => $options) {
         if(!isset($_POST[$field])) {
             $returnstring .= "<li>Field with name '".$field."' is missing.</li>";
         }
@@ -371,35 +380,24 @@ function checkFieldsExist($form_fields) {
     return $returnstring;
 }
 
-function validateFields($form_fields, $mapping) {
+function validateFields($rules) {
 
     require dirname(__FILE__).'/classes/FormValidate.php';
 
     $validate = new FormValidate;
-    
-    foreach($form_fields as $field => $type) {
-        $display_name = getDisplayName($field, $mapping);
-        
-        $vals = '';
-        if(isset($_POST[$field])) {
-            $vals = $_POST[$field];
+
+    foreach($rules as $real_name => $field_rules) {
+        $field_value = '';
+        if(isset($_POST[$real_name])) {
+            $field_value = $_POST[$real_name];
         }
-        $validate->validate($field, $display_name, $vals, $type);
-        
+        $validate->validate($field_value, $field_rules);
     }
     
     if($validate->anyErrors()) {
         $message =  "<ul>".$validate->getErrorString()."</ul>";
         exitError($message);
     }
-}
-
-
-function getDisplayName($name, $mapping) {
-    if(!isset($mapping[$name])) {
-        exitFail("Problem with field mapping in configuration.");
-    }
-    return stripslashes($mapping[$name]);
 }
 
 function useField($value) {
@@ -460,6 +458,12 @@ function getUserIp() {
 function isSuccess() {
     if(strtoupper(SMTP_DEBUG) == "YES") {
         exit();
+    }
+    if(defined('THANK_YOU_PAGE')) {
+        if(strlen(THANK_YOU_PAGE) > 0) {
+            echo 'URL:'.THANK_YOU_PAGE;
+            exit();
+        }
     }
     echo base64_decode("U3VjY2Vzcy4=").getSsValue("c");
     exit();

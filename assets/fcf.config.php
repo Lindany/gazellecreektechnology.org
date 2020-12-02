@@ -83,14 +83,14 @@ define('EMAIL_OUT_FROM_NAME', '');
 define('EMAIL_TO', 'info@gazellecreektechnologies.co.za');
 define('EMAIL_TO_NAME', 'Gazelle Creek Technologies');
 
-define('EMAIL_TO_CC', 'mabasolindanircardo@gmail.com');
+define('EMAIL_TO_CC', 'mabasolindaniricardo@gmail.com');
 define('EMAIL_TO_CC_NAME', 'Lindani');
 
-define('EMAIL_TO_BCC', '');
-define('EMAIL_TO_BCC_NAME', 'lindanimabaso@gazellecreektechnologies.co.za');
+define('EMAIL_TO_BCC', 'lindanimabaso@gazellecreektechnologies.co.za');
+define('EMAIL_TO_BCC_NAME', 'Lindani Mabaso - GCT');
 
 define('EMAIL_FROM', 'info@gazellecreektechnologies.co.za');
-define('EMAIL_FROM_NAME', '');
+define('EMAIL_FROM_NAME', 'Gazelle Creek Technologies');
 
 define('EMAIL_REPLY_TO', 'FIELD:Email');
 define('EMAIL_REPLY_TO_NAME', 'FIELD:Email');
