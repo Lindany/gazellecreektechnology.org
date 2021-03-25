@@ -3543,7 +3543,7 @@ textarea {
     font-size: 3rem; }
     @media (min-width: 768px) {
       .section-home .home-title {
-        font-size: 5rem; } }
+        font-size: 3rem; } }
   .section-home .section-content .bordered {
     border-bottom: 2px solid currentColor; }
   .section-home .section-content .title-desc {
