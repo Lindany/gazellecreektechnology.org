@@ -107,7 +107,7 @@ define('EMAIL_SUBJECT_AFTER', '');
 define('USE_SMTP', 'NO'); // YES or NO
 define('SMTP_HOST', 'mail.gazellecreektechnologies.co.za');
 define('SMTP_USER', 'info@gazellecreektechnologies.co.za');
-define('SMTP_PASS', 'info@gazellecreektechnologies.co.za');
+define('SMTP_PASS', 'WLi7(k4j?Ot=n8TZcY');
 define('SMTP_AUTH', '');
 define('SMTP_SECURE', ''); // STARTTLS, SMTPS (port 465) or empty
 define('SMTP_PORT', '');
