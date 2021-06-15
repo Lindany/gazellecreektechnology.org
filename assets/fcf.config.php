@@ -104,14 +104,14 @@ define('EMAIL_SUBJECT_AFTER', 'Email from Website');
 // ***************
 // EMAIL TRANSPORT
 // ***************
-define('USE_SMTP', 'NO'); // YES or NO
+define('USE_SMTP', 'YES'); // YES or NO
 define('SMTP_HOST', 'mail.gazellecreektechnologies.co.za');
 define('SMTP_USER', 'contact@gazellecreektechnologies.co.za');
 define('SMTP_PASS', 'contact@gazellecreektechnologies.co.za');
 define('SMTP_AUTH', '');
-define('SMTP_SECURE', ''); // STARTTLS, SMTPS (port 465) or empty
-define('SMTP_PORT', '');
-define('SMTP_DEBUG', 'NO'); // YES or NO
+define('SMTP_SECURE', 'SMTPS'); // STARTTLS, SMTPS (port 465) or empty
+define('SMTP_PORT', '465');
+define('SMTP_DEBUG', 'YES'); // YES or NO
 
 
 
