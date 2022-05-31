@@ -80,16 +80,16 @@ define('EMAIL_OUT_FROM_NAME', '');
 // *************
 // EMAIL MESSAGE
 // *************
-define('EMAIL_TO', 'info@gazellecreektechnologies.co.za');
+define('EMAIL_TO', 'info@gctza.co.za');
 define('EMAIL_TO_NAME', 'Gazelle Creek Technologies');
 
 define('EMAIL_TO_CC', 'mabasolindaniricardo@gmail.com');
 define('EMAIL_TO_CC_NAME', 'Lindani');
 
-define('EMAIL_TO_BCC', 'contact@gazellecreektechnologies.co.za');
+define('EMAIL_TO_BCC', 'contact@gctza.co.za');
 define('EMAIL_TO_BCC_NAME', 'Lindani Mabaso - GCT');
 
-define('EMAIL_FROM', 'contact@gazellecreektechnologies.co.za');
+define('EMAIL_FROM', 'contact@gctza.co.za');
 define('EMAIL_FROM_NAME', 'Gazelle Creek Technologies');
 
 define('EMAIL_REPLY_TO', 'FIELD:Email');
@@ -105,9 +105,9 @@ define('EMAIL_SUBJECT_AFTER', 'Email from Website');
 // EMAIL TRANSPORT
 // ***************
 define('USE_SMTP', 'NO'); // YES or NO
-define('SMTP_HOST', 'mail.gazellecreektechnologies.co.za');
-define('SMTP_USER', 'contact@gazellecreektechnologies.co.za');
-define('SMTP_PASS', 'contact@gazellecreektechnologies.co.za');
+define('SMTP_HOST', 'mail.gctza.co.za');
+define('SMTP_USER', 'contact@gctza.co.za');
+define('SMTP_PASS', 'contact@gctza.co.za');
 define('SMTP_AUTH', '');
 define('SMTP_SECURE', ''); // STARTTLS, SMTPS (port 465) or empty
 define('SMTP_PORT', '');
